@@ -9,6 +9,7 @@ import (
 	"github.com/7wik-pk/BnB-bookingsapp/pkg/render"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-gonic/gin"
 )
 
 var app config.AppConfig
@@ -20,6 +21,8 @@ func Run() {
 	app.InProduction = false
 	app.SessionKey = "secret"
 	app.CsrfSecret = "CSRFsecret"
+
+	gin.SetMode(gin.ReleaseMode)
 
 	app.CookieStore = cookie.NewStore([]byte(app.SessionKey))
 	app.CookieStore.Options(sessions.Options{

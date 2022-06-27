@@ -29,24 +29,84 @@ func Init(repo *repository) {
 
 // Handler for the Home page
 func (repo *repository) Home(ctx *gin.Context) {
+	// log.Println("inside handlers.Home()")
 	remoteIP := ctx.Request.RemoteAddr
 
 	session := sessions.Default(ctx)
 
-	if session.Get("remote_ip") == nil {
-		session.Set("remote_ip", remoteIP)
+	if session.Get(remoteIPKey) == nil {
+		// new session i.e, user is visiting the web app for the first time
+
+		// log.Println("remote IP not set")
+		session.Set(remoteIPKey, remoteIP)
 		if err := session.Save(); err != nil {
 			log.Println("error encountered while saving user IP address to session: ", err.Error())
 			ctx.JSON(http.StatusBadRequest, gin.H{
-				"error": "internal server error",
+				errorMessage: "Internal Server Error",
 			})
+			return
+		}
+
+		err := render.Template(ctx, "home.page.tmpl", &models.TemplateData{
+			StringMap: map[string]string{
+				templateMessage: "Hello There!",
+			},
+		})
+
+		if err != nil {
+			log.Println("error encountered while rendering template: ", err.Error())
+			ctx.JSON(http.StatusInternalServerError, gin.H{
+				errorMessage: "Internal Server Error",
+			})
+
+			return
+		}
+	} else {
+		// if session exists i.e, user is revisiting the page in an existing session
+		err := render.Template(ctx, "home.page.tmpl", &models.TemplateData{
+			StringMap: map[string]string{
+				templateMessage: "Welcome Back!",
+			},
+		})
+
+		if err != nil {
+			log.Println("error encountered while rendering template: ", err.Error())
+			ctx.JSON(http.StatusInternalServerError, gin.H{
+				errorMessage: "Internal Server Error",
+			})
+
 			return
 		}
 	}
 
-	render.Template(ctx, "home.page.tmpl", &models.TemplateData{})
-
 }
 
 // Handler for the about page
-// func (repo *repository) About(ctx *gin.Context) {}
+func (repo *repository) About(ctx *gin.Context) {
+	remoteIP := ctx.Request.RemoteAddr
+	session := sessions.Default(ctx)
+
+	if session.Get(remoteIPKey) == nil {
+		session.Set(remoteIPKey, remoteIP)
+		if err := session.Save(); err != nil {
+			log.Println("error encountered while saving user IP address to session: ", err.Error())
+			ctx.JSON(http.StatusBadRequest, gin.H{
+				errorMessage: "Internal Server Error",
+			})
+			return
+		}
+
+	}
+
+	// log.Println("calling render.Template()")
+	err := render.Template(ctx, "about.page.tmpl", &models.TemplateData{})
+	if err != nil {
+		log.Println("error encountered while rendering template: ", err.Error())
+		ctx.JSON(http.StatusInternalServerError, gin.H{
+			errorMessage: "Internal Server Error",
+		})
+
+		return
+	}
+
+}

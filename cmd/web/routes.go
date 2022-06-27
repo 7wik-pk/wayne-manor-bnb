@@ -24,7 +24,7 @@ func setupRouter(app *config.AppConfig) (router *gin.Engine) {
 
 	// configuring routes
 	router.GET("/", handlers.Repo.Home)
-	// router.GET("/about", )
+	router.GET("/about", handlers.Repo.About)
 
 	return router
 }

@@ -2,7 +2,6 @@ package render
 
 import (
 	"bytes"
-	"errors"
 	"html/template"
 	"path/filepath"
 
@@ -18,10 +17,11 @@ func Init(appConfig *config.AppConfig) {
 	app = appConfig
 }
 
-func Template(ctx *gin.Context, tmpl string, tmplData *models.TemplateData) error {
+func Template(ctx *gin.Context, tmpl string, templateData *models.TemplateData) error {
 	// var templateCache map[string]*template.Template
 
-	if !app.InProduction {
+	// log.Println("inside render.Template(), templateData: ", templateData.StringMap)
+	if !app.InProduction || app.TemplateCache == nil {
 		if err := CreateTemplateCache(); err != nil {
 			return err
 		}
@@ -29,16 +29,16 @@ func Template(ctx *gin.Context, tmpl string, tmplData *models.TemplateData) erro
 
 	templateObj, ok := app.TemplateCache[tmpl]
 	if !ok {
-		return errors.New("could not find the given template from template cache")
+		return errTemplateNotFound
 	}
 
 	buf := new(bytes.Buffer)
 
-	var templateData *models.TemplateData
-
 	if err := templateObj.Execute(buf, templateData); err != nil {
 		return err
 	}
+
+	// log.Println(buf.String())
 
 	if _, err := buf.WriteTo(ctx.Writer); err != nil {
 		return err
