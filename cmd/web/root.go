@@ -17,6 +17,7 @@ var app config.AppConfig
 func Run() {
 
 	// setting up the config variables
+
 	app.PortNumber = ":8080"
 	app.InProduction = false
 	app.SessionKey = "secret"
@@ -38,7 +39,19 @@ func Run() {
 
 	render.Init(&app)
 
+	initLogFile("./log/webapp.log")
+	defer closeLogFile()
+
+	logWriter, err := getLogWriter(true, true)
+	if err != nil {
+		log.Println("could not initialise logger, error: ", err.Error())
+	}
+
+	log.SetOutput(logWriter)
+	gin.DefaultWriter = logWriter
+
 	router := setupRouter(&app)
+
 	if err := router.Run(app.PortNumber); err != nil {
 		log.Fatal("error: gin router crashed: ", err.Error())
 	}
