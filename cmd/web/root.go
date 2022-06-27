@@ -1,0 +1,43 @@
+package web
+
+import (
+	"log"
+	"net/http"
+
+	"github.com/7wik-pk/BnB-bookingsapp/pkg/config"
+	"github.com/7wik-pk/BnB-bookingsapp/pkg/handlers"
+	"github.com/7wik-pk/BnB-bookingsapp/pkg/render"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
+)
+
+var app config.AppConfig
+
+func Run() {
+
+	// setting up the config variables
+	app.PortNumber = ":8080"
+	app.InProduction = false
+	app.SessionKey = "secret"
+	app.CsrfSecret = "CSRFsecret"
+
+	app.CookieStore = cookie.NewStore([]byte(app.SessionKey))
+	app.CookieStore.Options(sessions.Options{
+		Path:     "/",
+		MaxAge:   0,
+		Secure:   app.InProduction,
+		HttpOnly: true,
+		SameSite: http.SameSiteLaxMode,
+	})
+
+	repo := handlers.NewRepository(&app)
+	handlers.Init(repo)
+
+	render.Init(&app)
+
+	router := setupRouter(&app)
+	if err := router.Run(app.PortNumber); err != nil {
+		log.Fatal("error: gin router crashed: ", err.Error())
+	}
+
+}
