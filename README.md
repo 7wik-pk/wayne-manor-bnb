@@ -1,4 +1,4 @@
-# BnB-bookingapp
+# wayne-manor-BnB-booking
 Web app/portal to handle bookings and reservations for a bread and breakfast lodge. Written in Go.
 
 - Built in Go version 1.18

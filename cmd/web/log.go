@@ -1,7 +1,6 @@
 package web
 
 import (
-	"fmt"
 	"io"
 	"os"
 )
@@ -34,6 +33,5 @@ func getLogWriter(shouldWriteToFile bool, shouldPrintToConsole bool) (logWriter 
 }
 
 func closeLogFile() {
-	fmt.Println("closing log file")
 	file.Close()
 }

@@ -1,0 +1,70 @@
+{{define "pages/home.page.tmpl"}}
+
+    {{template "globals/header.tmpl"}}
+
+	<div class="container">
+
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center mt-2">{{index .StringMap "welcome_message"}} to Wayne Manor Bed & Breakfast</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="text-center">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium commodi similique ex debitis quo. Asperiores facere placeat doloribus, et laboriosam quaerat reprehenderit debitis dolore! Quam aperiam id deserunt unde sunt!</p>
+            </div>
+        </div>
+		
+    </div>
+
+
+	<div id="main-carousal" class="carousel slide" data-bs-ride="carousel">
+
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#main-carousal" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#main-carousal" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#main-carousal" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			<button type="button" data-bs-target="#main-carousal" data-bs-slide-to="3" aria-label="Slide 4"></button>
+		</div>
+
+		<div class="carousel-inner">
+			<div class="carousel-item active" data-bs-interval="4000">
+				<img src="/assets/static/images/home_bg.png" class="d-block w-100" alt="image">
+				<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75">
+					<h5>First slide label</h5>
+					<p>Lorem Ipsum</p>
+				</div>
+			</div>
+			<div class="carousel-item" data-bs-interval="4000">
+				<img src="/assets/static/images/inside1.png" class="d-block w-100" alt="image">
+				<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75">
+					<h5>Second slide label</h5>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error fuga vel voluptatem veniam iste natus tempora totam tempore. Suscipit qui ad saepe architecto? Minima porro quo officiis corrupti maiores eveniet.</p>
+				</div>
+			</div>
+			<div class="carousel-item" data-bs-interval="4000">
+				<img src="/assets/static/images/inside2.png" class="d-block w-100" alt="image">
+				<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75">
+					<h5>Third slide label</h5>
+					<p>desc</p>
+				</div>
+			</div>
+			<div class="carousel-item" data-bs-interval="4000">
+				<img src="/assets/static/images/inside3.png" class="d-block w-100" alt="image">
+				<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75">
+					<h5>Fourth slide label</h5>
+					<p>...</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+    
+
+
+    {{template "globals/footer.tmpl"}}
+
+{{end}}

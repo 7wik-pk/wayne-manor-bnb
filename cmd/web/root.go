@@ -4,9 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/7wik-pk/BnB-bookingsapp/pkg/config"
-	"github.com/7wik-pk/BnB-bookingsapp/pkg/handlers"
-	"github.com/7wik-pk/BnB-bookingsapp/pkg/render"
+	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/config"
+	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/handlers"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
@@ -23,7 +22,11 @@ func Run() {
 	app.SessionKey = "secret"
 	app.CsrfSecret = "CSRFsecret"
 
-	gin.SetMode(gin.ReleaseMode)
+	if app.InProduction {
+		gin.SetMode(gin.ReleaseMode)
+	} else {
+		gin.SetMode(gin.DebugMode)
+	}
 
 	app.CookieStore = cookie.NewStore([]byte(app.SessionKey))
 	app.CookieStore.Options(sessions.Options{
@@ -36,8 +39,6 @@ func Run() {
 
 	repo := handlers.NewRepository(&app)
 	handlers.Init(repo)
-
-	render.Init(&app)
 
 	initLogFile("./log/webapp.log")
 	defer closeLogFile()
