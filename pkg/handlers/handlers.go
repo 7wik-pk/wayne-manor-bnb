@@ -45,6 +45,7 @@ func (repo *repository) Home(ctx *gin.Context) {
 		}
 
 		ctx.HTML(http.StatusOK, templates.HomePage, &models.TemplateData{
+			Title: homePageTitle,
 			StringMap: map[string]string{
 				welcomeMessage: "Welcome",
 			},
@@ -53,6 +54,7 @@ func (repo *repository) Home(ctx *gin.Context) {
 		// if session exists i.e, user is revisiting the page in an existing session
 
 		ctx.HTML(http.StatusOK, templates.HomePage, &models.TemplateData{
+			Title: homePageTitle,
 			StringMap: map[string]string{
 				welcomeMessage: "Welcome Back",
 			},
@@ -78,14 +80,14 @@ func (repo *repository) About(ctx *gin.Context) {
 
 	}
 
-	ctx.HTML(http.StatusOK, templates.AboutPage, nil)
+	ctx.HTML(http.StatusOK, templates.AboutPage, &models.TemplateData{Title: aboutPageTitle})
 
 }
 
 func (repo *repository) Contact(ctx *gin.Context) {
-	ctx.HTML(http.StatusOK, templates.ContactPage, nil)
+	ctx.HTML(http.StatusOK, templates.ContactPage, &models.TemplateData{Title: contactPageTitle})
 }
 
 func (repo *repository) NoRoute(ctx *gin.Context) {
-	ctx.HTML(http.StatusNotFound, templates.NotFoundPage, nil)
+	ctx.HTML(http.StatusNotFound, templates.NotFoundPage, &models.TemplateData{Title: notFoundPageTitle})
 }

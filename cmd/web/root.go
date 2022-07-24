@@ -3,6 +3,7 @@ package web
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/config"
 	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/handlers"
@@ -17,7 +18,8 @@ func Run() {
 
 	// setting up the config variables
 
-	app.PortNumber = ":8080"
+	app.PortNumber = os.Getenv("PORT")
+	// app.PortNumber = "8080"
 	app.InProduction = false
 	app.SessionKey = "secret"
 	app.CsrfSecret = "CSRFsecret"
@@ -53,7 +55,7 @@ func Run() {
 
 	router := setupRouter(&app)
 
-	if err := router.Run(app.PortNumber); err != nil {
+	if err := router.Run(":" + app.PortNumber); err != nil {
 		log.Fatal("error: gin router crashed: ", err.Error())
 	}
 
