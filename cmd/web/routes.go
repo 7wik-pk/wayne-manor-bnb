@@ -3,8 +3,8 @@ package web
 import (
 	"net/http"
 
-	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/config"
-	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/handlers"
+	"github.com/7wik-pk/wayne-manor-BnB/pkg/config"
+	"github.com/7wik-pk/wayne-manor-BnB/pkg/handlers"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 

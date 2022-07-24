@@ -4,9 +4,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/config"
-	"github.com/7wik-pk/wayne-manor-BnB-booking/pkg/models"
-	"github.com/7wik-pk/wayne-manor-BnB-booking/templates"
+	"github.com/7wik-pk/wayne-manor-BnB/pkg/config"
+	"github.com/7wik-pk/wayne-manor-BnB/pkg/models"
+	"github.com/7wik-pk/wayne-manor-BnB/templates"
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
