@@ -1,7 +1,7 @@
 # wayne-manor-BnB
 Web app/portal to handle bookings and reservations for a fictional bread and breakfast lodge.
 
-Currently hosted at https://wayne-manor-bnb.herokuapp.com/
+Currently hosted on [Heroku](https://wayne-manor-bnb.herokuapp.com/)
 
 - Built in Go version 1.18
 - Uses [Gin](github.com/gin-gonic/gin)
