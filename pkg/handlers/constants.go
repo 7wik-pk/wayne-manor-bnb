@@ -7,5 +7,5 @@ const (
 
 // Template variables
 const (
-	templateMessage string = "welcome_message"
+	welcomeMessage string = "welcome_message"
 )

@@ -46,7 +46,7 @@ func (repo *repository) Home(ctx *gin.Context) {
 
 		ctx.HTML(http.StatusOK, templates.HomePage, &models.TemplateData{
 			StringMap: map[string]string{
-				templateMessage: "Welcome",
+				welcomeMessage: "Welcome",
 			},
 		})
 	} else {
@@ -54,7 +54,7 @@ func (repo *repository) Home(ctx *gin.Context) {
 
 		ctx.HTML(http.StatusOK, templates.HomePage, &models.TemplateData{
 			StringMap: map[string]string{
-				templateMessage: "Welcome Back",
+				welcomeMessage: "Welcome Back",
 			},
 		})
 	}
@@ -78,11 +78,7 @@ func (repo *repository) About(ctx *gin.Context) {
 
 	}
 
-	ctx.HTML(http.StatusOK, templates.AboutPage, &models.TemplateData{
-		StringMap: map[string]string{
-			templateMessage: "Welcome Back!",
-		},
-	})
+	ctx.HTML(http.StatusOK, templates.AboutPage, nil)
 
 }
 

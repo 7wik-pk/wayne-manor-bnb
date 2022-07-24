@@ -1,8 +1,8 @@
 package templates
 
 const (
-	HomePage     = "pages/home.page.tmpl"
-	AboutPage    = "pages/about.page.tmpl"
-	ContactPage  = "pages/contact.page.tmpl"
-	NotFoundPage = "pages/no_route.page.tmpl"
+	HomePage     = "pages/home.page.gohtml"
+	AboutPage    = "pages/about.page.gohtml"
+	ContactPage  = "pages/contact.page.gohtml"
+	NotFoundPage = "pages/no_route.page.gohtml"
 )

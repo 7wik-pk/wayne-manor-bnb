@@ -15,7 +15,7 @@ func setupRouter(app *config.AppConfig) (router *gin.Engine) {
 	router = gin.Default()
 
 	router.Static("/assets", "./assets")
-	router.LoadHTMLGlob("templates/**/*.tmpl")
+	router.LoadHTMLGlob("templates/**/*.gohtml")
 
 	// configuring middlewares
 	router.Use(sessions.Sessions("session", app.CookieStore))
