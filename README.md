@@ -1,4 +1,4 @@
-# wayne-manor-BnB
+# Wayne Manor Bed & Breakfast
 Web app/portal to handle bookings and reservations for a fictional bread and breakfast lodge.
 
 Currently hosted on [Heroku](https://wayne-manor-bnb.herokuapp.com/)
