@@ -3,7 +3,6 @@ package web
 import (
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/7wik-pk/wayne-manor-bnb/pkg/config"
 	"github.com/7wik-pk/wayne-manor-bnb/pkg/handlers"
@@ -18,8 +17,8 @@ func Run() {
 
 	// setting up the config variables
 
-	app.PortNumber = os.Getenv("PORT")
-	// app.PortNumber = "8080"
+	// app.PortNumber = os.Getenv("PORT")
+	app.PortNumber = "8080"
 	app.InProduction = false
 	app.SessionKey = "secret"
 	app.CsrfSecret = "CSRFsecret"
