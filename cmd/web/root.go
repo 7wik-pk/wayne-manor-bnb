@@ -41,7 +41,10 @@ func Run() {
 	repo := handlers.NewRepository(&app)
 	handlers.Init(repo)
 
-	initLogFile("./log/webapp.log")
+	err := initLogFile("./log/webapp.log")
+	if err != nil {
+		log.Println("error initializing log file: ", err.Error())
+	}
 	defer closeLogFile()
 
 	logWriter, err := getLogWriter(true, true)
