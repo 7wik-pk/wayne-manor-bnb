@@ -1,4 +1,4 @@
-module github.com/7wik-pk/wayne-manor-BnB
+module github.com/7wik-pk/wayne-manor-bnb
 
 go 1.18
 
