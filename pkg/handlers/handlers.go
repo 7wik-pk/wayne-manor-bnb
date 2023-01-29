@@ -65,29 +65,23 @@ func (repo *repository) Home(ctx *gin.Context) {
 
 // Handler for the about page
 func (repo *repository) About(ctx *gin.Context) {
+
 	// log.Println("inside handlers.About()")
-
-	remoteIP := ctx.Request.RemoteAddr
-	session := sessions.Default(ctx)
-
-	if session.Get(remoteIPKey) == nil {
-		session.Set(remoteIPKey, remoteIP)
-		if err := session.Save(); err != nil {
-			log.Println("error encountered while saving user IP address to session: ", err.Error())
-			ctx.String(http.StatusInternalServerError, "500: Internal Server Error")
-			return
-		}
-
-	}
-
 	ctx.HTML(http.StatusOK, templates.AboutPage, &models.TemplateData{Title: aboutPageTitle})
 
 }
 
+// Handler for the page that provides available rooms based on input parameters.
+func (repo *repository) AvailableRooms(ctx *gin.Context) {
+	ctx.HTML(http.StatusOK, templates.AvailableRoomsPage, &models.TemplateData{Title: availableRoomsPageTitle})
+}
+
+// Handler for the contact page
 func (repo *repository) Contact(ctx *gin.Context) {
 	ctx.HTML(http.StatusOK, templates.ContactPage, &models.TemplateData{Title: contactPageTitle})
 }
 
+// Handler for non-existing pages
 func (repo *repository) NoRoute(ctx *gin.Context) {
 	ctx.HTML(http.StatusNotFound, templates.NotFoundPage, &models.TemplateData{Title: notFoundPageTitle})
 }

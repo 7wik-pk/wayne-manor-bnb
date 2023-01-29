@@ -28,8 +28,13 @@ func setupRouter(app *config.AppConfig) (router *gin.Engine) {
 
 	// configuring routes
 	router.GET("/", handlers.Repo.Home)
+
 	router.GET("/about", handlers.Repo.About)
 	router.GET("/contact", handlers.Repo.Contact)
+
+	router.GET("/rooms/available", handlers.Repo.AvailableRooms)
+	// router.GET("/rooms/cancel", )
+
 	router.NoRoute(handlers.Repo.NoRoute)
 
 	return router

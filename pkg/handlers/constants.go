@@ -12,8 +12,11 @@ const (
 
 // page titles
 const (
-	homePageTitle     string = "Wayne Manor B&B"
-	aboutPageTitle    string = "About Wayne Manor"
-	contactPageTitle  string = "Contact Wayne Manor B&B"
+	homePageTitle    string = "Wayne Manor B&B"
+	aboutPageTitle   string = "About Wayne Manor"
+	contactPageTitle string = "Contact Wayne Manor B&B"
+
+	availableRoomsPageTitle string = "Room Availability"
+
 	notFoundPageTitle string = "Page Not Found"
 )
