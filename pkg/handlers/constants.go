@@ -1,6 +1,6 @@
 package handlers
 
-// keys
+// cookie keys
 const (
 	remoteIPKey string = "remote_ip"
 )
